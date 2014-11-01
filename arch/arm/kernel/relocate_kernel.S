@@ -8,7 +8,7 @@
 #include <asm/memory.h>
 #if defined(CONFIG_ARCH_TEGRA_2x_SOC) || defined(CONFIG_ARCH_TEGRA_3x_SOC)
   #include <mach/iomap.h>
-#elif defined(CONFIG_ARCH_APQ8064)
+#elif defined(CONFIG_ARCH_APQ8064) || defined(CONFIG_ARCH_MSM8226)
   #include <mach/msm_iomap.h>
 #endif
 #endif
@@ -81,13 +81,19 @@ hardboot:
 	 *  0: KEXEC_HB_PAGE_MAGIC
 	 *  4: kexec_start_address
 	 *  8: kexec_mach_type
-	 * 12: kexec_boot_atags */
+	 * 12: kexec_boot_atags
+	 * 16: kexec_boot_atags_len
+	 * 20: kexec_kernel_len */
 	ldr	r0, =KEXEC_HB_PAGE_ADDR
 	str	r1, [r0, #4]
 	ldr	r1, kexec_mach_type
 	str	r1, [r0, #8]
 	ldr	r1, kexec_boot_atags
 	str	r1, [r0, #12]
+	ldr	r1, kexec_boot_atags_len
+	str	r1, [r0, #16]
+	ldr	r1, kexec_kernel_len
+	str	r1, [r0, #20]
 	ldr	r1, =KEXEC_HB_PAGE_MAGIC
 	str	r1, [r0]
 
@@ -102,6 +108,12 @@ loop:	b	loop
 	ldr	r0, =APQ8064_TLMM_PHYS
 	mov	r1, #0
 	str	r1, [r0, #0x820]  @ PSHOLD_CTL_SU
+loop:	b	loop
+#elif defined(CONFIG_ARCH_MSM8226)
+	/* Restart using the PMIC chip, see mach-msm/restart.c */
+	ldr	r0, =MSM8226_MPM2_PSHOLD_PHYS
+	mov	r1, #0
+	str	r1, [r0, #0]
 loop:	b	loop
 #else
 #error "No reboot method defined for hardboot."
@@ -129,6 +141,14 @@ kexec_boot_atags:
 	.long	0x0
 
 #ifdef CONFIG_KEXEC_HARDBOOT
+	.globl kexec_boot_atags_len
+kexec_boot_atags_len:
+	.long	0x0
+
+	.globl kexec_kernel_len
+kexec_kernel_len:
+	.long	0x0
+
 	.globl kexec_hardboot
 kexec_hardboot:
 	.long	0x0
@@ -139,5 +159,4 @@ relocate_new_kernel_end:
 	.globl relocate_new_kernel_size
 relocate_new_kernel_size:
 	.long relocate_new_kernel_end - relocate_new_kernel
-
 
