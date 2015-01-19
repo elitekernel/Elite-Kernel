@@ -83,7 +83,7 @@ fi
 
 echo "Making dt.img..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
-	dtbToolCM -o out/dt.img -s 2048 -p scripts/dtc/ arch/arm/boot/
+	./dtbToolCM -o out/dt.img -s 2048 -p scripts/dtc/ arch/arm/boot/
 	echo "dt.img created"
 else
 	echo "No build found..."
@@ -92,7 +92,7 @@ fi
 
 echo "Making boot.img..."
 if [ -f out/"$kerneltype" ]; then
-	mkbootimg --kernel out/"$kerneltype" --ramdisk resources/ramdisk.cpio.gz --cmdline "$cmdline" --pagesize $ps --base $base_offset --ramdisk_offset $ramdisk_offset --tags_offset $tags_offset --dt out/dt.img --output ozip/boot.img
+	./mkbootimg --kernel out/"$kerneltype" --ramdisk resources/ramdisk.cpio.gz --cmdline "$cmdline" --pagesize $ps --base $base_offset --ramdisk_offset $ramdisk_offset --tags_offset $tags_offset --dt out/dt.img --output ozip/boot.img
 	if [ -z ozip/boot.img ]; then
 		echo "mkbootimg failed..."
 		exit 0;
