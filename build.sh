@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export ARCH=arm
+
 build=/home/luca/Documenti/Unnamed-Kernel-Build
 export CROSS_COMPILE=~/toolchain/android_prebuilts_gcc_linux-x86_arm_sabermod-arm-eabi-4.8-master/bin/arm-eabi-
 
