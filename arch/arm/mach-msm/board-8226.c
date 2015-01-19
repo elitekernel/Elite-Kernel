@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+	/* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -130,7 +130,7 @@ void __init msm8226_add_drivers(void)
 #ifdef CONFIG_INTELLI_THERMAL
 	msm_thermal_init(NULL);
 #else
-	msm_thermal_device_init(NULL);
+	msm_thermal_device_init();
 #endif
 	msm_kcal_ctrl_init();
 }
