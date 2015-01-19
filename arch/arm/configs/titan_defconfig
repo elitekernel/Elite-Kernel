@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm 3.4.42 Kernel Configuration
+# Linux/arm 3.4.58 Kernel Configuration
 #
 CONFIG_ARM=y
 CONFIG_ARM_HAS_SG_CHAIN=y
@@ -1749,6 +1749,7 @@ CONFIG_LEGACY_PTY_COUNT=256
 # CONFIG_TRACE_SINK is not set
 # CONFIG_DEVMEM is not set
 # CONFIG_DEVKMEM is not set
+CONFIG_FRANDOM=y
 
 #
 # Serial drivers
