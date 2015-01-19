@@ -110,7 +110,7 @@ if [ -f arch/arm/boot/"$kerneltype" ]; then
 	cd ..
 	rm -rf out
 	echo "Done..."
-	echo "Output zip: $build/$kernel-$rom-$variant-$date.zip
+	echo "Output zip: $build/$kernel-$rom-$variant-$date.zip"
 	exit 0;
 else
 	echo "No $kerneltype found..."
