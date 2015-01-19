@@ -6,7 +6,7 @@ build=/home/luca/Documenti/Unnamed-Kernel-Build
 export CROSS_COMPILE=~/toolchain/android_prebuilts_gcc_linux-x86_arm_sabermod-arm-eabi-4.8-master/bin/arm-eabi-
 
 kernel="Unnamed-Kernel"
-version="1"
+date="$(date +'%d_%m_%Y')"
 rom="cm-12.0"
 variant="titan"
 config="titan_defconfig"
@@ -105,8 +105,8 @@ fi
 echo "Zipping..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
 	cd ozip
-	zip -r ../"$kernel"-$version-"$rom"_"$variant".zip .
-	mv ../"$kernel"-$version-"$rom"_"$variant".zip $build
+	zip -r ../"$kernel""$rom"_"$variant"_"$date".zip .
+	mv ../"$kernel""$rom"-"$variant"-"$date".zip $build
 	cd ..
 	rm -rf out
 	echo "Done..."
