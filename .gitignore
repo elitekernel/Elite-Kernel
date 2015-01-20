@@ -89,6 +89,4 @@ GTAGS
 
 # Kernel
 arch/arm/mach-msm/smd_rpc_sym.c
-
-# Ramdisk
-!/resources/ramdisk.cpio.gz
+ozip/kernel/zImage

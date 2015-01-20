@@ -23,11 +23,8 @@ function cleanme {
 	echo "Working directory cleaned..."
 }
 
-rm -rf out
-mkdir out
-mkdir out/tmp
 echo "Checking for build..."
-if [ -f kernel/zImage ]; then
+if [ -f ozip/kernel/zImage ]; then
 	read -p "Previous build found, clean working directory..(y/n)? : " cchoice
 	case "$cchoice" in
 		y|Y )
@@ -91,7 +88,6 @@ if [ -f arch/arm/boot/"$kerneltype" ]; then
 	zip -r ../"$kernel"-"$rom"-"$variant"-"$date".zip .
 	mv ../"$kernel"-"$rom"-"$variant"-"$date".zip $build
 	cd ..
-	rm -rf out
 	echo "Done..."
 	echo "Output zip: $build/$kernel-$rom-$variant-$date.zip"
 	exit 0;
