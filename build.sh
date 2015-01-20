@@ -51,7 +51,7 @@ if [ -f kernel/zImage ]; then
 fi
 echo "Extracting files..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
-	cp arch/arm/boot/"$kerneltype" out/ozip/kernel/
+	cp arch/arm/boot/"$kerneltype" ozip/kernel/
 	mkdir -p ozip/system/etc/init.d
 	cp scripts/unnamed/* ozip/system/etc/init.d
 else
@@ -80,7 +80,7 @@ fi
 
 echo "Making dt.img..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
-	./dtbToolCM -o out/dt.img -s 2048 -p scripts/dtc/ arch/arm/boot/
+	./dtbToolCM -o ozip/kernel/dt.img -s 2048 -p scripts/dtc/ arch/arm/boot/
 	echo "dt.img created"
 else
 	echo "No build found..."
