@@ -25,6 +25,7 @@ function cleanme {
 
 echo "Checking for build..."
 if [ -f .done ]; then
+	rm .done
 	read -p "Previous build found, clean working directory..(y/n)? : " cchoice
 	case "$cchoice" in
 		y|Y )
