@@ -12,11 +12,6 @@ variant="titan"
 config="titan_defconfig"
 kerneltype="zImage"
 jobcount="-j$(grep -c ^processor /proc/cpuinfo)"
-ps=2048
-base_offset=0x00000000
-ramdisk_offset=0x01000000
-tags_offset=0x00000100
-cmdline="console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 androidboot.bootdevice=msm_sdcc.1 vmalloc=400M utags.blkdev=/dev/block/platform/msm_sdcc.1/by-name/utags androidboot.write_protect=0"
 
 function cleanme {
 	if [ -f arch/arm/boot/"$kerneltype" ]; then
@@ -32,7 +27,7 @@ rm -rf out
 mkdir out
 mkdir out/tmp
 echo "Checking for build..."
-if [ -f ozip/boot.img ]; then
+if [ -f kernel/zImage ]; then
 	read -p "Previous build found, clean working directory..(y/n)? : " cchoice
 	case "$cchoice" in
 		y|Y )
@@ -56,7 +51,7 @@ if [ -f ozip/boot.img ]; then
 fi
 echo "Extracting files..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
-	cp arch/arm/boot/"$kerneltype" out/"$kerneltype"
+	cp arch/arm/boot/"$kerneltype" out/ozip/kernel/
 else
 	echo "Nothing has been made..."
 	read -p "Clean working directory..(y/n)? : " achoice
@@ -87,18 +82,6 @@ if [ -f arch/arm/boot/"$kerneltype" ]; then
 	echo "dt.img created"
 else
 	echo "No build found..."
-	exit 0;
-fi
-
-echo "Making boot.img..."
-if [ -f out/"$kerneltype" ]; then
-	./mkbootimg --kernel out/"$kerneltype" --ramdisk resources/ramdisk.cpio.gz --cmdline "$cmdline" --pagesize $ps --base $base_offset --ramdisk_offset $ramdisk_offset --tags_offset $tags_offset --dt out/dt.img --output ozip/boot.img
-	if [ -z ozip/boot.img ]; then
-		echo "mkbootimg failed..."
-		exit 0;
-	fi
-else
-	echo "No $kerneltype found..."
 	exit 0;
 fi
 
