@@ -24,7 +24,7 @@ function cleanme {
 }
 
 echo "Checking for build..."
-if [ -f ozip/kernel/zImage ]; then
+if [ -f .done ]; then
 	read -p "Previous build found, clean working directory..(y/n)? : " cchoice
 	case "$cchoice" in
 		y|Y )
@@ -90,6 +90,7 @@ if [ -f arch/arm/boot/"$kerneltype" ]; then
 	cd ..
 	echo "Done..."
 	echo "Output zip: $build/$kernel-$rom-$variant-$date.zip"
+	touch .done
 	exit 0;
 else
 	echo "No $kerneltype found..."
