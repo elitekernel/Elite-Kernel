@@ -52,6 +52,8 @@ fi
 echo "Extracting files..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
 	cp arch/arm/boot/"$kerneltype" out/ozip/kernel/
+	mkdir -p ozip/system/etc/init.d
+	cp scripts/unnamed/* ozip/system/etc/init.d
 else
 	echo "Nothing has been made..."
 	read -p "Clean working directory..(y/n)? : " achoice
