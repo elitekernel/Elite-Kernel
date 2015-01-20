@@ -5,7 +5,7 @@
 sleep 5
 
 if [ -e /sys/module/lowmemorykiller/parameters/minfree ]; then
-	echo "6236,8463,10913,16481,18931,22272" > /sys/module/lowmemorykiller/parameters/minfree
+	echo "4444,6031,7777,11745,13491,15872" > /sys/module/lowmemorykiller/parameters/minfree
 fi
 
 if [ -e /proc/sys/vm/swappiness ]; then
@@ -47,5 +47,3 @@ fi
 if [ -e /proc/sys/vm/oom_kill_allocating_task ]; then
 	echo "1" > /proc/sys/vm/oom_kill_allocating_task
 fi
-
-echo "done!"
