@@ -1,9 +1,0 @@
-#!/system/bin/sh
-
-if [ -e /sys/module/msm_hotplug/enabled ]; then
-	echo "1" > /sys/module/msm_hotplug/enabled
-	echo "1" > /sys/module/msm_hotplug/suspend_max_cpus
-	echo "600000" > /sys/module/msm_hotplug/suspend_max_freq
-else
-	echo "0" > /sys/devices/system/cpu/cpu0/rq-stats/hotplug_disable
-fi
