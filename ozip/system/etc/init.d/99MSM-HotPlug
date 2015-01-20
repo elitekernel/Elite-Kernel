@@ -1,5 +1,7 @@
 #!/system/bin/sh
 
+sleep 5
+
 if [ -e /sys/module/msm_hotplug/enabled ]; then
 	echo "1" > /sys/module/msm_hotplug/enabled
 	echo "1" > /sys/module/msm_hotplug/suspend_max_cpus
