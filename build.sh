@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export ARCH=arm
-export CROSS_COMPILE=~/toolchain/android_prebuilts_gcc_linux-x86_arm_sabermod-arm-eabi-4.8-master/bin/arm-eabi-
+export CROSS_COMPILE=~/toolchain/arm-cortex_a7-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a7-linux-gnueabihf-
 
 build="/home/luca/Documenti/Unnamed-Kernel-Build"
 kernel="Unnamed-Kernel"
