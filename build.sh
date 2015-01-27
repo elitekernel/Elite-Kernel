@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export ARCH=arm
-export CROSS_COMPILE=~/toolchain/arm-cortex_a7-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a7-linux-gnueabihf-
+export SUBARCH=arm
 
 build="/home/luca/Documenti/Unnamed-Kernel-Build"
 kernel="Unnamed-Kernel"
@@ -21,6 +21,35 @@ function cleanme {
 	make clean && make mrproper
 	echo "Working directory cleaned..."
 }
+
+echo "Which toolchain would you like to use?"
+
+while read -p "sabernaro, linaromod, linaro or linaro-a7? " cchoice
+do
+echo
+case "$cchoice" in
+        sabernaro )
+                toolchain="sabernaro"
+                export CROSS_COMPILE=/home/luca/toolchain/SaberNaro-arm-eabi-4.9/bin/arm-eabi-
+                break
+                ;;
+        linaromod )
+                toolchain="linaromod"
+                export CROSS_COMPILE=/home/luca/toolchain/LinaroMod-arm-eabi-4.9/bin/arm-eabi-
+                break
+                ;;
+        linaro )
+                toolchain="linaro"
+                export CROSS_COMPILE=/home/luca/toolchain/linaro-arm-eabi-4.9/bin/arm-eabi-
+                break
+                ;;
+        linaro-a7 )
+                toolchain="linaro"
+                export CROSS_COMPILE=~/toolchain/arm-cortex_a7-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a7-linux-gnueabihf-
+                break
+                ;;
+esac
+done
 
 echo "Checking for build..."
 if [ -f .done ]; then
