@@ -3078,7 +3078,7 @@ int snd_soc_bytes_put(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	int ret;
 
-	if (codec->using_regmap)
+	if (!codec->using_regmap || !params->num_regs)
 		ret = regmap_raw_write(codec->control_data, params->base,
 				       ucontrol->value.bytes.data,
 				       params->num_regs * codec->val_bytes);
