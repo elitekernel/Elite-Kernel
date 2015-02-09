@@ -30,22 +30,22 @@ echo
 case "$cchoice" in
         sabernaro )
                 toolchain="sabernaro"
-                export CROSS_COMPILE=/home/luca/toolchain/SaberNaro-arm-eabi-4.9/bin/arm-eabi-
+                export CROSS_COMPILE=/home/luca/android/toolchain/SaberNaro-arm-eabi-4.9/bin/arm-eabi-
                 break
                 ;;
         linaromod )
                 toolchain="linaromod"
-                export CROSS_COMPILE=/home/luca/toolchain/LinaroMod-arm-eabi-4.9/bin/arm-eabi-
+                export CROSS_COMPILE=/home/luca/android/toolchain/LinaroMod-arm-eabi-4.9/bin/arm-eabi-
                 break
                 ;;
         linaro )
                 toolchain="linaro"
-                export CROSS_COMPILE=/home/luca/toolchain/linaro-arm-eabi-4.9/bin/arm-eabi-
+                export CROSS_COMPILE=/home/luca/android/toolchain/linaro-arm-eabi-4.9/bin/arm-eabi-
                 break
                 ;;
         linaro-a7 )
                 toolchain="linaro-a7"
-                export CROSS_COMPILE=~/toolchain/arm-cortex_a7-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a7-linux-gnueabihf-
+                export CROSS_COMPILE=~/toolchain/android/arm-cortex_a7-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a7-linux-gnueabihf-
                 break
                 ;;
 esac
