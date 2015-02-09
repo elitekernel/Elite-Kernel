@@ -44,7 +44,7 @@ case "$cchoice" in
                 break
                 ;;
         linaro-a7 )
-                toolchain="linaro"
+                toolchain="linaro-a7"
                 export CROSS_COMPILE=~/toolchain/arm-cortex_a7-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a7-linux-gnueabihf-
                 break
                 ;;
